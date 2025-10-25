@@ -2,7 +2,10 @@
 
 namespace Grav\Plugin;
 
+use DateInvalidTimeZoneException;
+use DateMalformedStringException;
 use Grav\Common\Plugin;
+use JsonException;
 
 class UptimePlugin extends Plugin
 {
@@ -14,8 +17,9 @@ class UptimePlugin extends Plugin
     }
 
     /**
-     * @throws \DateInvalidTimeZoneException
-     * @throws \DateMalformedStringException
+     * @throws DateInvalidTimeZoneException
+     * @throws DateMalformedStringException
+     * @throws JsonException
      */
     public function onPluginsInitialized(): void
     {
@@ -42,7 +46,6 @@ class UptimePlugin extends Plugin
             'time' => $now,
         ];
 
-        // Add uptime if possible
         $tzObj = new \DateTimeZone($tz);
         // host uptime (kernel)
         if ($host = $this->getHostUptime($tzObj)) {
@@ -79,7 +82,7 @@ class UptimePlugin extends Plugin
         http_response_code($code);
 
         echo ($ctype === 'application/json')
-            ? json_encode($payload, JSON_UNESCAPED_SLASHES)
+            ? json_encode($payload, JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES)
             : $this->toText($payload);
 
         exit;
@@ -115,17 +118,20 @@ class UptimePlugin extends Plugin
         return ($v !== false && $v !== '') ? $v : $default;
     }
 
+    /**
+     * @throws JsonException
+     */
     private function toText(array $arr): string
     {
         $lines = [];
         foreach ($arr as $k => $v) {
-            $lines[] = $k . '=' . (is_scalar($v) ? $v : json_encode($v, JSON_UNESCAPED_SLASHES));
+            $lines[] = $k . '=' . (is_scalar($v) ? $v : json_encode($v, JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES));
         }
         return implode("\n", $lines) . "\n";
     }
 
     /**
-     * @throws \DateMalformedStringException
+     * @throws DateMalformedStringException
      */
     private function getHostUptime(\DateTimeZone $tz): ?array
     {
@@ -148,7 +154,7 @@ class UptimePlugin extends Plugin
     }
 
     /**
-     * @throws \DateMalformedStringException
+     * @throws DateMalformedStringException
      */
     private function getContainerUptime(\DateTimeZone $tz): ?array
     {
@@ -192,6 +198,4 @@ class UptimePlugin extends Plugin
             'started_iso' => $started->format(\DateTimeInterface::ATOM),
         ];
     }
-
-
 }

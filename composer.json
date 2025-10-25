@@ -1,6 +1,6 @@
 {
   "name": "dennisdebest/grav-plugin-uptime",
-  "description": "Grav plugin: JSON /healthcheck endpoint with env overrides and host/container uptime.",
+  "description": "Grav plugin: JSON /uptime endpoint with env overrides and host/container uptime.",
   "type": "grav-plugin",
   "license": "MIT",
   "autoload": {

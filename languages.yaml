@@ -31,3 +31,20 @@ fr:
     EXTRA_JSON: "JSON supplémentaire (fusionné)"
     EXTRA_JSON_HELP: "JSON fusionné dans la réponse. Var env : UPTIME_EXTRA_JSON."
     CACHE_CONTROL: "En-tête Cache-Control"
+
+nl:
+  PLUGIN_UPTIME:
+    ROUTE: "Route"
+    ROUTE_HELP: "Pad dat door de plugin wordt bediend. Kan worden overschreven met UPTIME_ROUTE."
+    HTTP_CODE: "HTTP-statuscode"
+    HTTP_CODE_HELP: "Standaard 200. Kan worden aangepast voor tests."
+    CONTENT_TYPE: "Content-Type"
+    STATUS: "Status (payload)"
+    SERVICE: "Service (payload)"
+    ENV: "Omgeving (payload)"
+    TIMEZONE: "Tijdzone"
+    DATETIME_FORMAT: "Datum-/tijdformaat"
+    DATETIME_FORMAT_HELP: "PHP date()-formaat of 'c' voor ISO8601."
+    EXTRA_JSON: "Extra JSON (samengevoegd)"
+    EXTRA_JSON_HELP: "JSON samengevoegd met de payload. Omgevingsvariabele: UPTIME_EXTRA_JSON."
+    CACHE_CONTROL: "Cache-Control-header"
