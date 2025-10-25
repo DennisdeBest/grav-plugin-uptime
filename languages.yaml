@@ -1,6 +1,5 @@
 en:
   PLUGIN_UPTIME:
-    DESCRIPTION: "Minimal /uptime endpoint with admin settings and env overrides."
     ROUTE: "Route"
     ROUTE_HELP: "Path served by the plugin. Env overrides with UPTIME_ROUTE."
     HTTP_CODE: "HTTP status code"
@@ -18,7 +17,6 @@ en:
 
 fr:
   PLUGIN_UPTIME:
-    DESCRIPTION: "Endpoint /uptime minimal avec réglages admin et variables d’environnement."
     ROUTE: "Route"
     ROUTE_HELP: "Chemin servi par le plugin. Surchargé par UPTIME_ROUTE."
     HTTP_CODE: "Code HTTP"
