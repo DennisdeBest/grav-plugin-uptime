@@ -1,0 +1,92 @@
+name: Uptime
+version: 1.0.0
+description: Minimal /uptime endpoint with admin settings and env overrides.
+icon: heartbeat
+keywords: health, status, monitoring, uptime
+author:
+  name: Dennis de Best
+  email: Dennis@debest.fr
+homepage: https://debest.fr
+license: MIT
+
+form:
+  validation: strict
+  fields:
+    enabled:
+      type: toggle
+      label: PLUGIN_ADMIN.PLUGIN_STATUS
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
+
+    route:
+      type: text
+      label: PLUGIN_UPTIME.ROUTE
+      help: PLUGIN_UPTIME.ROUTE_HELP
+      default: /uptime
+      validate:
+        type: string
+
+    http_code:
+      type: number
+      label: PLUGIN_UPTIME.HTTP_CODE
+      help: PLUGIN_UPTIME.HTTP_CODE_HELP
+      default: 200
+      validate:
+        min: 100
+        max: 599
+
+    content_type:
+      type: select
+      label: PLUGIN_UPTIME.CONTENT_TYPE
+      default: application/json
+      options:
+        application/json: application/json
+        text/plain: text/plain
+
+    status:
+      type: text
+      label: PLUGIN_UPTIME.STATUS
+      default: ok
+      placeholder: ok
+
+    service:
+      type: text
+      label: PLUGIN_UPTIME.SERVICE
+      default: grav
+      placeholder: grav
+
+    env:
+      type: text
+      label: PLUGIN_UPTIME.ENV
+      default: prod
+      placeholder: prod
+
+    timezone:
+      type: text
+      label: PLUGIN_UPTIME.TIMEZONE
+      default: Europe/Paris
+      placeholder: Europe/Paris
+
+    datetime_format:
+      type: text
+      label: PLUGIN_UPTIME.DATETIME_FORMAT
+      help: PLUGIN_UPTIME.DATETIME_FORMAT_HELP
+      default: c
+
+    extra_json:
+      type: textarea
+      label: PLUGIN_UPTIME.EXTRA_JSON
+      help: PLUGIN_UPTIME.EXTRA_JSON_HELP
+      placeholder: '{"envVarValue": "env:VARNAME", "otherValue": "otherValue"}'
+      validate:
+        type: string
+
+    cache_control:
+      type: text
+      label: PLUGIN_UPTIME.CACHE_CONTROL
+      default: no-store, no-cache, must-revalidate, max-age=0

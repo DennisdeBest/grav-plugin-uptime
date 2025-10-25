@@ -1,0 +1,11 @@
+enabled: true
+route: /uptime
+http_code: 200
+content_type: application/json
+status: ok
+service: grav
+env: prod
+timezone: Europe/Paris
+datetime_format: c
+extra_json: ''
+cache_control: 'no-store, no-cache, must-revalidate, max-age=0'
